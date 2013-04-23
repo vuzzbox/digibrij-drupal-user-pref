@@ -1,0 +1,9 @@
+; $Id$
+name = User Profile / User Preference Center - redirect login
+description = This module produces handles redirection of user logins to either the User Profile page or "destination" provided in query string
+core = 6.x
+version = 6.x-1.1
+
+dependencies[] = user_profile
+
+package = Sally Hansen User Preference Center

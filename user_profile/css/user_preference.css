@@ -1,0 +1,296 @@
+/* user-profile styles */
+
+
+fieldset#user-profile-preference-group2.user-profile-preference-group {
+  border-top: 1px solid #E3E3E3 ;
+  border-bottom: 0;
+  border-left: 0;
+  border-right: 0;
+  width: 610px;
+  margin-top: 30px;
+}
+
+fieldset#user-profile-preference-group2.user-profile-preference-group legend {
+  font-size: 1em !important;
+}
+
+fieldset#user-profile-preference-group1.user-profile-preference-group {
+  border-top: 1px solid #E3E3E3 !important;
+  border-bottom: 0 !important;
+  border-left: 0!important;
+  border-right: 0 !important;
+  width: 610px !important;
+  margin-top: 30px !important;
+}
+
+fieldset#user-profile-preference-group1.user-profile-preference-group legend {
+  font-size: 1em !important;
+}
+
+#user-profile-registration-form fieldset.user-profile-type-full ,
+#user-profile-registration-form fieldset.user-profile-type-basic {
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+  padding: 15px 0 15px 0;
+  margin-bottom: 30px;
+  border-color: #e3e3e3;
+}
+
+#user-profile-registration-form fieldset.user-profile-type-full legend,
+#user-profile-registration-form fieldset.user-profile-type-basic legend  {
+  display: block;
+  color: #F68A33;
+  text-decoration: none;
+  margin: 0 40px 0 0;
+  padding-left: 0;
+  font-size: 1.2em;
+  padding-right: 20px;
+}
+
+#user-profile-registration-form .user-profile-type-full fieldset legend a,
+#user-profile-registration-form .user-profile-type-basic fieldset legend a  {
+  margin: 0 40px 0 0;
+  padding-left: 0;
+}
+
+#user-profile-registration-form fieldset.user-profile-type-full div.description,
+#user-profile-registration-form fieldset.user-profile-type-basic  div.description {
+  width: 600px;
+}
+
+
+#user-profile-registration-form div.container-inline {
+  width: 380px;
+  margin:5px 0 15px 0;
+}
+
+/**
+ * Register Form password fields
+ */
+#user-profile-registration-form #edit-pass-1-wrapper #edit-pass-pass1-1-wrapper {
+  margin: 5px 0 15px 0 !important;
+  height:auto;
+}
+
+#user-profile-registration-form #edit-pass-1-wrapper #edit-pass-pass1-1-wrapper span.password-strength {
+  left: 330px;
+  position: relative;
+  top: 2px;
+}
+
+#user-profile-registration-form #edit-pass-1-wrapper #edit-pass-pass2-1-wrapper {
+  margin: 5px 0 15px 0 !important;
+  height:auto;
+}
+
+#user-profile-registration-form #edit-pass-1-wrapper #edit-pass-pass2-1-wrapper span.password-confirm {
+  left: 285px;
+  position: relative;
+  top: 2px;
+}
+
+#user-profile-registration-form #edit-pass-1-wrapper .description {
+  width: 340px;
+}
+
+#user-profile-registration-form #edit-pass-pass1-1 {
+  position: absolute;
+  left: 443px;
+}
+
+#user-profile-registration-form #edit-pass-pass2-1 {
+  position: absolute;
+  left: 443px;
+}
+
+/**
+ * Profile Edit Form password fields
+ */
+#user-profile-registration-form #edit-pass-wrapper #edit-pass-pass1-wrapper {
+  margin: 5px 0 15px 0 !important;
+  height:auto;
+}
+
+#user-profile-registration-form #edit-pass-wrapper #edit-pass-pass1-wrapper span.password-strength {
+  left: 330px;
+  position: relative;
+  top: 2px;
+}
+
+#user-profile-registration-form #edit-pass-wrapper #edit-pass-pass2-wrapper {
+  margin: 5px 0 15px 0 !important;
+  height:auto;
+}
+
+#user-profile-registration-form #edit-pass-wrapper #edit-pass-pass2-wrapper span.password-confirm {
+  left: 285px;
+  position: relative;
+  top: 2px;
+}
+
+#user-profile-registration-form #edit-pass-wrapper .description {
+  width: 340px;
+}
+
+#user-profile-registration-form #edit-pass-pass1 {
+  position: absolute;
+  left: 443px;
+}
+
+#user-profile-registration-form #edit-pass-pass2 {
+  position: absolute;
+  left: 443px;
+}
+
+/**
+ * form field styling
+ */
+#user-profile-registration-form span.form-required {
+  margin-left: -6px;
+  margin-right: 1px;
+}
+
+#user-profile-registration-form #user-profile-picture-fieldset {
+  width: 380px;
+  margin-bottom: 35px;
+  border-bottom: solid 1px #E3E3E3;
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+}
+
+#user-profile-registration-form div.captcha {
+  border: none !important;
+  padding: 5px 0 20px 0 !important;
+  margin: 0 !important;
+}
+
+#user-profile-registration-form input.password-field {
+  margin-right: 0px !important;
+}
+
+#user-profile-registration-form input.password-confirm {
+  margin-right: 0px !important;;
+}
+
+#user-profile-registration-form input.right{
+  float:right;
+}
+
+#user-profile-registration-form .form-item label {
+    display: inline;
+    font-weight: normal;
+    margin-bottom: 4px;
+    cursor: default;
+    color: #6C6C6C
+}
+
+#user-profile-registration-form .form-item label.option {
+    cursor: pointer;
+    color: #8C8C8C
+}
+
+#user-profile-registration-form div.container-inline select.country_select {
+  width:218px;
+  float:right;
+}
+
+#user-profile-registration-form #edit-birth-date-wrapper {
+    margin: 5px 0 15px;
+    width: 380px;
+}
+
+#user-profile-registration-form #edit-birth-date-wrapper .container-inline, .section-user .form-radios {
+    float: right;
+    width: 220px;
+    margin: 0;
+}
+
+#sidebar-left .tabs {
+	margin-top: 50px;
+}
+
+/*#sidebar-left .tabs li {
+    border-color: #DCDBDC #F8F7F7 #DCDBDC #DCDBDC;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    width: 187px !important;
+    background: #DFDFDB;
+    display: block;
+}*/
+
+#sidebar-left .tabs li.active-trail{
+    border-color: #DCDBDC #F8F7F7 #DCDBDC #DCDBDC;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    width: 188px !important;
+    background: none;
+}
+
+#sidebar-left .tabs li.active-trail a{color: #F68933;}
+
+#sidebar-left .tabs li {
+	background: #DFDFDB;
+	border-color: #DCDBDC;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    width: 188px !important;
+}
+#sidebar-left .tabs li a{color: #747A7A;}
+
+
+
+#user-profile-registration-form #user-profile-fieldset2 .form-item {
+  width: 380px;
+}
+
+#user-profile-registration-form #user-profile-fieldset2 .form-checkboxes
+{
+  margin-bottom: 30px;
+}
+
+#user-profile-registration-form #user-profile-fieldset1 .option {
+  font-weight: normal;
+}
+
+#user-profile-registration-form #user-profile-fieldset2 .option {
+  font-weight: normal;
+}
+
+#user-profile-registration-form #user-profile-fieldset3 .option {
+  font-weight: normal;
+}
+
+#user-profile-registration-form input.next-button {
+  background: url(../images/icons_sprite.png) no-repeat 44px -626px white; padding: 1px 20px 2px 9px;
+  display: inline;
+  position: relative;
+  top: -9px;
+  left: 310px;
+}
+
+#user-profile-registration-form input.back-button {
+  background: url(../images/icons_sprite.png) no-repeat 7px -672px white; padding: 1px 9px 2px 20px;
+  display: inline;
+  position: relative;
+  top:20px;
+  left: 10px;
+  color: #8C8C8C;
+}
+
+#user-profile-registration-form input.create-button {
+  display: block;
+  font-weight: bold;
+  left: 310px;
+  padding: 1px 5px 5px;
+  position: relative;
+  top: -9px;
+}
+

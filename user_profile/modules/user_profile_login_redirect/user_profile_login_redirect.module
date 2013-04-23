@@ -1,0 +1,32 @@
+<?php
+/**
+ * @file
+ * User Preference Center - Login redirect module
+ *
+ * @author  Ed McLaughlin <epmclaughlin@gmail.com>
+ *          for VisonMix Digital Media, Inc.
+ *
+ */
+
+/**
+* Implementation of hook_form_alter().
+*/
+function user_profile_login_redirect_form_alter(&$form, &$form_state, $form_id) {
+//  if ($form_id == 'user_login' && !empty($form_state['ajax'])) {
+  if ($form_id == 'user_login') {
+    $form['#submit'][] = 'user_profile_login_redirect_submit_handler';
+  }
+}
+
+/**
+* Custom submit handler to redefine redirect path.
+*/
+function user_profile_login_redirect_submit_handler($form, &$form_state) {
+  if (isset($_GET['destination'])) {
+     $redirect_path = $_GET['destination'];
+  } else {
+    global $user;
+    $redirect_path = 'user/preference_center/profile/' . $user->uid;
+  }
+  $form_state['redirect'] = $redirect_path;
+}

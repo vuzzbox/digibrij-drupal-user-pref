@@ -1,0 +1,72 @@
+<?php
+
+function user_profile_triggers_init() {
+  global $user;
+
+  drupal_add_js(drupal_get_path('module', 'user_profile_triggers') .'/js/jquery.cookie.js');
+  drupal_add_js(drupal_get_path('module', 'user_profile_triggers') .'/js/user_profile_triggers.js');
+
+  define("NEWSLETTER_SIGNUP_REQUEST_INTERVAL_DAYS",     "30");
+  define("USER_PROFILE_UPDATE_REQUEST_INTERVAL_DAYS",   "30");
+
+  $current_time = time();
+
+  // Rule:      First time visitors will be prompted to sign up for the newsletter
+  // Condition: If first_visit_date cookie is not set, this is a first time visitor.
+  // Actions:   $newsletter_signup_flag = 1, reset cookies
+    $first_visit_date = (isset($_COOKIE['first_visit_date'])) ? $_COOKIE['first_visit_date'] : 0;
+    $newsletter_signup_flag = 0;   // default flag to zero
+
+    if ($first_visit_date == 0) {
+      setcookie('first_visit_date', $current_time, $current_time + (86400 * 3650), '/'); //set the cookie to expire far in the future (10 years).
+      setcookie('last_newsletter_signup_prompt_date', $current_time, $current_time + (86400 * 3650), '/');
+      $newsletter_signup_flag = 1;
+    }
+
+  // Rule:      Return visitors who have not signed up for the newsletter will prompted again after a defined interval
+  // Condition: If $newsletter_signup_date is 0 and current time is NEWSLETTER_SIGNUP_REQUEST_INTERVAL_DAYS greater
+  //            than $last_newsletter_signup_prompt_date
+  // Actions:   $newsletter_signup_flag = 1, reset cookie
+  // Note:      newsletter_signup_date cookie will be set by the newsletter form submit script in the sh_newsletter module
+    $newsletter_signup_date = (isset($_COOKIE['newsletter_signup_date'])) ? $_COOKIE['newsletter_signup_date'] : 0;
+    $last_newsletter_signup_prompt_date = (isset($_COOKIE['last_newsletter_signup_prompt_date'])) ? $_COOKIE['last_newsletter_signup_prompt_date'] : 0;
+
+    if ($newsletter_signup_date == 0 &&
+      $last_newsletter_signup_prompt_date != 0 &&
+      ($current_time > ($last_newsletter_signup_prompt_date + (86400 * NEWSLETTER_SIGNUP_REQUEST_INTERVAL_DAYS)))) {
+        // reset date value in cookie to restart the countdown
+        setcookie('last_newsletter_signup_prompt_date', $current_time, $current_time + (86400 * 3650), '/');
+        $newsletter_signup_flag = 1;
+    }
+
+  // Rule:      Returning registered visitors who have not updated their profile within a defined interval of days
+  //            will be prompted to update their profile
+  // Condition: If $last_user_profile_update is 0 and visitor is a logged in user
+  //            If $current_time is USER_PROFILE_UPDATE_REQUEST_INTERVAL_DAYS greater than $last_user_profile_update_prompt_date
+  // Actions:   $user_profile_update_flag = 1, reset cookies
+  // Note:      user_profile_last_user_profile_update cookie is set/reset on submission of user profile forms.
+    $user_profile_update_flag = 0;  // default flag to zero
+    $last_user_profile_update = (isset($_COOKIE['user_profile_last_user_profile_update'])) ? $_COOKIE['user_profile_last_user_profile_update'] : 0;
+    $last_user_profile_update_prompt_date = (isset($_COOKIE['last_user_profile_update_prompt_date'])) ? $_COOKIE['last_user_profile_update_prompt_date'] : 0;
+    // registered user, no profile update recorded
+    if ($last_user_profile_update == 0 && $user->uid > 0) {
+      setcookie('user_profile_last_user_profile_update', $current_time, $current_time + (86400 * 3650), '/');
+      setcookie('last_user_profile_update_prompt_date', $current_time, $current_time + (86400 * 3650), '/');
+      $user_profile_update_flag = 1;
+    }
+    // Registered user who has not updated user profile within defined interval
+    if ($last_user_profile_update != 0 &&
+      $last_user_profile_update_prompt_date != 0 &&
+      ($current_time > ($last_user_profile_update_prompt_date + (86400 * USER_PROFILE_UPDATE_REQUEST_INTERVAL_DAYS)))) {
+        setcookie('last_user_profile_update_prompt_date', $current_time, $current_time + (86400 * 3650), '/');
+        $user_profile_update_flag = 1;
+    }
+
+  // Add trigger values to javascript settings. These will be checked by the user_profile_triggers.js script,
+  // which will initiate the appropriate action.
+  $settings = array();
+  $settings['user_profile_triggers'] = array();
+  $settings['user_profile_triggers']['user_profile_update_flag'] = $user_profile_update_flag;
+  $settings['user_profile_triggers']['newsletter_signup_flag'] = $newsletter_signup_flag;
+  drupal_add_js($settings, 'setting');
+}

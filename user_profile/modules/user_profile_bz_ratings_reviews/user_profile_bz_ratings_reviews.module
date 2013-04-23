@@ -1,0 +1,53 @@
+<?php
+/**
+ * @file
+ * User Preference Center - Bazarre Voice Ratings and Review page module
+ *
+ * @author  Ed McLaughlin <epmclaughlin@gmail.com>
+ *          for VisonMix Digital Media, Inc.
+ *
+ */
+
+// include_once('../includes/user_preference_functions.php');
+
+/*
+ * Implements hook_menu()
+ */
+function user_profile_bz_ratings_reviews_menu() {
+  $items = array();
+
+  $items['user/preference_center/ratings_reviews/%user_uid_optional'] = array(
+      'page callback' => 'user_profile_bz_ratings_reviews_page_callback',
+      'page arguments' => array(3),
+      'access arguments' => array('access content'),
+      'type' => MENU_CALLBACK,
+    );
+
+  return $items;
+}
+
+/**
+ * page call back for
+ * user/preference_center/ratings_reviews/%user_uid_optional
+ */
+function user_profile_bz_ratings_reviews_page_callback($user) {
+  $uid = $user->uid;
+
+  $output = theme('user_profile_bz_ratings_reviews', $uid);
+  return $output;
+}
+
+/**
+ * Implementation of hook_theme
+ */
+function user_profile_bz_ratings_reviews_theme(&$existing,$type,$theme,$path) {
+  return array(
+    'user_profile_bz_ratings_reviews' => array(
+      'template' => 'user-profile-bz-ratings-reviews',
+      'arguments' => array('uid' => null),
+    ),
+  );
+}
+
+
+

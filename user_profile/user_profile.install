@@ -1,0 +1,153 @@
+<?php
+/**
+ * @file
+ * Install, update, and uninstall functions for the User_Profile module.
+ */
+
+function user_profile_install() {
+  drupal_install_schema('user_profile');
+  drupal_install_schema('user_preference_terms');
+}
+
+function user_profile_uninstall() {
+  drupal_uninstall_schema('user_profile');
+  drupal_uninstall_schema('user_preference_terms');
+}
+
+/**
+ * Implementation of hook_schema()
+ */
+function user_profile_schema() {
+
+  $schema['user_profile'] = array(
+    'description' => 'Additional User Profile Form Fields',
+    'fields' => array(
+      'uid' => array(
+        'type' => 'int',
+        'length' => 10,
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'User ID',
+      ),
+      'first_name' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'First Name',
+      ),
+      'last_name' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'Last Name',
+      ),
+      'email' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'Email Address',
+      ),
+      'birth_date' => array(
+        'type' => 'datetime',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '00-00-00 00:00:00',
+        'description' => 'Birth Date',
+        ),
+      'address' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'Address',
+        ),
+      'city' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'City',
+      ),
+      'state' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'State',
+      ),
+      'country' => array(
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'Country',
+      ),
+      'zip' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => FALSE,
+        'default' => '',
+        'description' => 'Zip Code',
+      ),
+    ),
+    'primary key' => array('uid')
+  );
+  return $schema;
+}
+
+
+function user_preference_terms_schema() {
+  $schema['user_preference_terms'] = array(
+    'description' => t('Stores user preference taxonomy terms for each user profile '),
+    'fields' => array(
+      'uptid' => array(
+        'description' => t('Primary Key'),
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'uid' => array(
+        'description' => t('User ID'),
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'vid' => array(
+        'description' => t('Vocabulary ID'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'tid' => array(
+        'description' => t('Term ID'),
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('uptid'),
+    'indexes' => array(
+      'user_and_vocabs' => array('uid', 'vid'),
+    ),
+  );
+  return $schema;
+}
+
+function user_profile_update_6100() {
+  // For most updates, the following is sufficient.
+  $ret = array();
+  db_add_field($ret, 'user_profile', 'cotyoptin', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'COTY Opt-in'));
+  db_add_field($ret, 'user_profile', 'sallyoptin', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'Sally Hansen Opt-in'));
+  db_add_field($ret, 'user_profile', 'privacy', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'Accepted Privacy Policy'));
+
+  return $ret;
+}
+
+function user_profile_update_6101() {
+  $ret = array();
+  db_add_field($ret, 'user_profile', 'gender', array('type' => 'varchar', 'length' => '6','not null' => TRUE, 'default' => '', 'description' => 'Gender'));
+  drupal_install_schema('user_preference_terms');
+
+  return $ret;
+}
