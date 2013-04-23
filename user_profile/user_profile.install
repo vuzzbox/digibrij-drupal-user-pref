@@ -137,8 +137,8 @@ function user_preference_terms_schema() {
 function user_profile_update_6100() {
   // For most updates, the following is sufficient.
   $ret = array();
-  db_add_field($ret, 'user_profile', 'cotyoptin', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'COTY Opt-in'));
-  db_add_field($ret, 'user_profile', 'sallyoptin', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'Sally Hansen Opt-in'));
+  db_add_field($ret, 'user_profile', 'parentcooptin', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'Parent Company Opt-in'));
+  db_add_field($ret, 'user_profile', 'digibrijoptin', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'Digibrij Opt-in'));
   db_add_field($ret, 'user_profile', 'privacy', array('type' => 'int', 'not null' => TRUE, 'length' => 10, 'default' => 0, 'description' => 'Accepted Privacy Policy'));
 
   return $ret;

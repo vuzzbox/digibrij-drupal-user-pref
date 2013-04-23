@@ -50,7 +50,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
     $form['my_beauty_profile'] = array(
       '#type' => 'fieldset',
       '#title' => t('My Beauty Profile'),
-      '#description' => 'Sally Hansen wants to help you be your best from head to toe. Help us get to know you better by sharing your interests and beauty preferences.',
+      '#description' => 'Help us get to know you better by sharing your interests and preferences.',
       '#weight' => 4,
       '#collapsible' => FALSE,
       '#collapsed' => FALSE,
@@ -303,7 +303,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
       '#value' => t('BACK'),
       '#attributes' => array(
         'class'=>'back-button',
-        "onClick" => "Drupal.SallyHansen_User_Profile.back(1); return false;",
+        "onClick" => "Drupal.Digibrij_User_Profile.back(1); return false;",
       ),
     );
 
@@ -313,7 +313,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
       '#value' => t('NEXT'),
       '#attributes' => array(
         'class'=>'next-button',
-        "onClick" => "Drupal.SallyHansen_User_Profile.next(1); return false;",
+        "onClick" => "Drupal.Digibrij_User_Profile.next(1); return false;",
       ),
     );
   }
@@ -404,7 +404,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
         '#value' => t('BACK'),
         '#attributes' => array(
           'class'=>'back-button',
-          "onClick" => "Drupal.SallyHansen_User_Profile.back(2); return false;",
+          "onClick" => "Drupal.Digibrij_User_Profile.back(2); return false;",
         ),
       );
       $form['my_beauty_profile']['next'] = array(
@@ -413,22 +413,22 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
         '#value' => t('NEXT'),
         '#attributes' => array(
           'class'=>'next-button',
-          "onClick" => "Drupal.SallyHansen_User_Profile.next(2); return false;",
+          "onClick" => "Drupal.Digibrij_User_Profile.next(2); return false;",
         ),
       );
     }
   }
 
-  $form['my_settings']['sallyoptin'] = array(
+  $form['my_settings']['digibrij'] = array(
     '#type' => 'checkbox',
-    '#title' => t('I would like to receive communications from Sally Hansen'),
-    '#default_value' => $edit->sallyoptin,
+    '#title' => t('I would like to receive communications from us.'),
+    '#default_value' => $edit->digibrij,
   );
 
-  $form['my_settings']['cotyoptin'] = array(
+  $form['my_settings']['parentcooptin'] = array(
     '#type' => 'checkbox',
-    '#title' => t('I would like to receive communications from COTY, Inc'),
-    '#default_value' => $edit->cotyoptin,
+    '#title' => t('I would like to receive communications from our parent company.'),
+    '#default_value' => $edit->parentcooptin,
   );
 
   /**
@@ -437,7 +437,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
   if (!$edit) {
     $form['my_settings']['privacy'] = array(
     '#type' => 'checkbox',
-    '#title' => t('I agree with the ') . l(t('Privacy Policy'),'http://www.coty.com/privacy_policy.html',array('attributes'=>array('target'=>'_blank'))),
+    '#title' => t('I agree with the ') . l(t('Privacy Policy'),'http://www.digibrij.com/privacy_policy.html',array('attributes'=>array('target'=>'_blank'))),
     '#required' => TRUE
     );
   }
@@ -449,7 +449,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
       '#value' => t('BACK'),
       '#attributes' => array(
         'class'=>'back-button',
-        "onClick" => "Drupal.SallyHansen_User_Profile.back(3); return false;",
+        "onClick" => "Drupal.Digibrij_User_Profile.back(3); return false;",
       ),
     );
 
@@ -459,7 +459,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
       '#value' => t('NEXT'),
       '#attributes' => array(
         'class'=>'next-button',
-        "onClick" => "Drupal.SallyHansen_User_Profile.next(3); return false;",
+        "onClick" => "Drupal.Digibrij_User_Profile.next(3); return false;",
       ),
     );
   }
@@ -481,7 +481,7 @@ function _user_profile_form_fields($edit, $profile_type = 'basic', $preference_p
       '#value' => t('BACK'),
       '#attributes' => array(
         'class'=>'back-button',
-        "onClick" => "Drupal.SallyHansen_User_Profile.back(4); return false;",
+        "onClick" => "Drupal.Digibrij_User_Profile.back(4); return false;",
       ),
     );
   }

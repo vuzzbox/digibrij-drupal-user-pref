@@ -1,6 +1,6 @@
 <?php
 /**
- * @file Defies hooks and callbacks for custom menus and menu access for Preference Center
+ * @file Defines hooks and callbacks for custom menus and menu access for Preference Center
  */
 
 module_load_include('php', 'user_profile', 'user_preference_functions');

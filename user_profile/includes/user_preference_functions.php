@@ -15,8 +15,8 @@ $fragrance_families_vid = variable_get(user_profile_vocab2,0);
 $fragrance_personas_vid = variable_get(user_profile_vocab3,0);
 $email_preferences_vid = variable_get(user_profile_vocab4,0);
 
-define("SALLY_HANSEN_LISTID",     "2085991336");
-define("COTY_LISTID",             "2085987683");
+define("DIGIBRIJ_LISTID",     "00000");
+define("PARENT_CO_LISTID",    "00000");
 
 /**
  * Sets properties and attributes on the standard user account form to make it
@@ -67,7 +67,7 @@ function _user_preference_set_account_form(&$form, $edit, $profile_type, $prefer
         '#value' => t('NEXT'),
         '#attributes' => array(
           "class" => "next-button",
-          "onClick" => "Drupal.SallyHansen_User_Profile.next(0); return false;",
+          "onClick" => "Drupal.Digibrij_User_Profile.next(0); return false;",
         )
       );
 
@@ -216,7 +216,7 @@ function _pull_terms($term_array){
  * just the basic user profile form.
  *
  * The test is based on geographic location and relies on the
- * custom Coty Quova module
+ * custom parentco Quova module
  *
  * Right now, only US visitors get the full monty.
  *
@@ -241,7 +241,7 @@ function _get_profile_type() {
 }
 
 function _get_country() {
-  $geo = coty_quova_ipinfo_request();
+  $geo = parentco_quova_ipinfo_request();
   return $geo->ipinfo->Location->CountryData->country_code;
 }
 
@@ -397,23 +397,23 @@ function theme_multicolumn_options($element) {
   return $output;
 }
 
-function user_profile_cheetah_mail_subscribe($form_state, $form, $list_actions, $events) {
+function user_profile_MAIL_APP_subscribe($form_state, $form, $list_actions, $events) {
   module_load_include('php', 'emf_cheetah_mail', 'CheetahMailClass');
 
   $subs = '';
   $unsubs = '';
 
 
-  if ($list_actions[SALLY_HANSEN_LISTID] == 'opt_in') {
-    $subs = SALLY_HANSEN_LISTID;
-  } elseif ($list_actions[SALLY_HANSEN_LISTID] == 'opt_out') {
-    $unsubs = SALLY_HANSEN_LISTID;
+  if ($list_actions[DIGIBRIJ_LISTID] == 'opt_in') {
+    $subs = DIGIBRIJ_LISTID;
+  } elseif ($list_actions[DIGIBRIJ_LISTID] == 'opt_out') {
+    $unsubs = DIGIBRIJ_LISTID;
   }
 
-  if ($list_actions[COTY_LISTID] == 'opt_in') {
-    $subs = ($subs == '') ? COTY_LISTID : $subs . '|' . COTY_LISTID;
-  } elseif ($list_actions[COTY_LISTID] == 'opt_out') {
-    $unsubs = ($unsubs == '') ? COTY_LISTID : $unsubs . '|' . COTY_LISTID;
+  if ($list_actions[PARENT_CO_LISTID] == 'opt_in') {
+    $subs = ($subs == '') ? PARENT_CO_LISTID : $subs . '|' . PARENT_CO_LISTID;
+  } elseif ($list_actions[PARENT_CO_LISTID] == 'opt_out') {
+    $unsubs = ($unsubs == '') ? PARENT_CO_LISTID : $unsubs . '|' . PARENT_CO_LISTID;
   }
 
   $username = $form_state['values']['name'];
@@ -467,10 +467,10 @@ function user_profile_cheetah_mail_subscribe($form_state, $form, $list_actions, 
   }
 
   $resubscribe = false;  // this value is being set to false so the resub value in options above is not overwritten by the subscriberAdd method below
-  $user = variable_get('emf_cheetah_mail_username', '');
-  $pwd = variable_get('emf_cheetah_mail_password', '');
+  $user = variable_get('emf_MAIL_APP_username', '');
+  $pwd = variable_get('emf_MAIL_APP_password', '');
 
-  $cm = new CheetahMail($user, $pwd, file_directory_temp() . '/user_profile_cheetah_mail_cookie.txt');
+  $cm = new CheetahMail($user, $pwd, file_directory_temp() . '/user_profile_MAIL_APP_cookie.txt');
   $results = $cm->subscriberAdd($email, $subs, $options, $resubscribe);
 
   if (!$results || isset($results['errorCode'])) {
@@ -479,21 +479,21 @@ function user_profile_cheetah_mail_subscribe($form_state, $form, $list_actions, 
       } else {
         $error = 'no error message';
       }
-      drupal_set_message(t('We experienced a problem subscribing you to Sally Hansen communications. The problem has been reported.  Please try again later.'));
+      drupal_set_message(t('We experienced a problem subscribing you to our email` communications. The problem has been reported.  Please try again later.'));
       watchdog('user_profile', 'Error in call to Cheetahmail->subscribeAdd: ' . $error, array('email' => $email, 'first name' =>  $first_name, 'error message' => $error), WATCHDOG_ERROR);
   }
 
 }
 
-function user_profile_cheetah_mail_unsubscribe($form_state, $list_id) {
+function user_profile_MAIL_APP_unsubscribe($form_state, $list_id) {
   module_load_include('php', 'emf_cheetah_mail', 'CheetahMailClass');
 
-  $user = variable_get('emf_cheetah_mail_username', '');
-  $pwd = variable_get('emf_cheetah_mail_password', '');
+  $user = variable_get('emf_MAIL_APP_username', '');
+  $pwd = variable_get('emf_MAIL_APP_password', '');
 
   $email = $form_state['values']['mail'];
 
-  $cm = new CheetahMail($user, $pwd, file_directory_temp() . '/user_profile_cheetah_mail_cookie.txt');
+  $cm = new CheetahMail($user, $pwd, file_directory_temp() . '/user_profile_MAIL_APP_cookie.txt');
   $results = $cm->unSubscribe($email, $list_id);
 
   if (!$results || isset($results['errorCode'])) {
@@ -502,7 +502,7 @@ function user_profile_cheetah_mail_unsubscribe($form_state, $list_id) {
       } else {
         $error = 'no error message';
       }
-      drupal_set_message(t('We experienced a problem unsubscribing you from Sally Hansen communications. The problem has been reported.  Please try again later.'));
+      drupal_set_message(t('We experienced a problem unsubscribing you from our email communications. The problem has been reported.  Please try again later.'));
       watchdog('user_profile', 'Error in call to Cheetahmail->unSubscribe', array('email' => $email, 'error message' => $error), WATCHDOG_ERROR);
   }
 }

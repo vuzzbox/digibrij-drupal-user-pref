@@ -14,7 +14,7 @@ function user_profile_user_register_submit(&$form, &$form_state) {
   $profileType = $form['profile_type']['#value'];
 
   $results = db_query("INSERT INTO {user_profile} (uid, first_name, last_name, email, birth_date, gender, address, city,
-      state, country, zip, cotyoptin, sallyoptin, privacy
+      state, country, zip, parentcooptin, digibrijoptin, privacy
     )
     VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
       $account->uid,
@@ -30,8 +30,8 @@ function user_profile_user_register_submit(&$form, &$form_state) {
       $form_state['values']['state'],
       $form_state['values']['country'],
       $form_state['values']['zip'],
-      $form_state['values']['cotyoptin'],
-      $form_state['values']['sallyoptin'],
+      $form_state['values']['parentcooptin'],
+      $form_state['values']['digibrijoptin'],
       $form_state['values']['privacy']
   );
 
@@ -51,9 +51,9 @@ function user_profile_user_register_submit(&$form, &$form_state) {
   }
 
   // submit user's subscriptions and preferences (if any) to Cheetah Mail
-  $list_action[SALLY_HANSEN_LISTID] = ($form_state['values']['sallyoptin'] == 1) ? 'opt_in' : 'opt_out';
-  $list_action[COTY_LISTID] = ($form_state['values']['cotyoptin'] == 1) ? 'opt_in' : 'opt_out';
-  user_profile_cheetah_mail_subscribe($form_state, $form, $list_action, CHEETAH_MAIL_EVENT_ID_PROFILE_WELCOME);
+  $list_action[DIGIBRIJ_LISTID] = ($form_state['values']['digibrijoptin'] == 1) ? 'opt_in' : 'opt_out';
+  $list_action[PARENT_CO_LISTID] = ($form_state['values']['parentcooptin'] == 1) ? 'opt_in' : 'opt_out';
+  user_profile_MAIL_APP_subscribe($form_state, $form, $list_action, MAIL_APP_EVENT_ID_PROFILE_WELCOME);
 
   //Set cookie with date of last profile update
   setcookie('user_profile_last_user_profile_update', time(),  time() + (86400 * 3650), '/');
@@ -80,7 +80,7 @@ function user_profile_user_edit_submit(&$form, &$form_state) {
   $result = db_result(db_query('SELECT uid FROM {user_profile} WHERE uid = %d',$uid));
   if (!$result) {
     $results = db_query("INSERT INTO {user_profile} (uid, first_name, last_name, email, birth_date, gender, address, city,
-      state, country, zip, cotyoptin, sallyoptin, privacy
+      state, country, zip, parentcooptin, digibrijoptin, privacy
     )
       VALUES ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')",
         $uid,
@@ -96,8 +96,8 @@ function user_profile_user_edit_submit(&$form, &$form_state) {
         $form_state['values']['state'],
         $form_state['values']['country'],
         $form_state['values']['zip'],
-        $form_state['values']['cotyoptin'],
-        $form_state['values']['sallyoptin'],
+        $form_state['values']['parentcooptin'],
+        $form_state['values']['digibrijoptin'],
         '1' // privacy always 1 if existing user
     );
   } else {
@@ -112,8 +112,8 @@ function user_profile_user_edit_submit(&$form, &$form_state) {
       . "state = '%s', "
       . "country = '%s', "
       . "zip = '%s' ,"
-      . "cotyoptin = '%s' ,"
-      . "sallyoptin = '%s' "
+      . "parentcooptin = '%s' ,"
+      . "digibrijoptin = '%s' "
       . "where uid = %d"
        ,
       $form_state['values']['first_name'],
@@ -128,8 +128,8 @@ function user_profile_user_edit_submit(&$form, &$form_state) {
       $form_state['values']['state'],
       $form_state['values']['country'],
       $form_state['values']['zip'],
-      $form_state['values']['cotyoptin'],
-      $form_state['values']['sallyoptin'],
+      $form_state['values']['parentcooptin'],
+      $form_state['values']['digibrijoptin'],
       $uid
     );
 
@@ -148,19 +148,19 @@ function user_profile_user_edit_submit(&$form, &$form_state) {
     }
   }
 
-  // Check for change in subscriber status for Sally Hansen or Coty lists in Cheetah Mail
+  // Check for change in subscriber status for email lists in Mail App
   // if initial form value is not equal to submitted form value
   $list_action = array();
-  if ($form['_account']['#value']->sallyoptin != $form_state['values']['sallyoptin']) {
-    $list_action[SALLY_HANSEN_LISTID] = ($form_state['values']['sallyoptin'] == 1) ? 'opt_in' : 'opt_out';
+  if ($form['_account']['#value']->digibrijoptin != $form_state['values']['digibrijoptin']) {
+    $list_action[DIGIBRIJ_LISTID] = ($form_state['values']['digibrijoptin'] == 1) ? 'opt_in' : 'opt_out';
   }
 
-  if ($form['_account']['#value']->cotyoptin != $form_state['values']['cotyoptin']) {
-    $list_action[COTY_LISTID] = ($form_state['values']['cotyoptin'] == 1) ? 'opt_in' : 'opt_out';
+  if ($form['_account']['#value']->parentcooptin != $form_state['values']['parentcooptin']) {
+    $list_action[PARENT_CO_LISTID] = ($form_state['values']['parentcooptin'] == 1) ? 'opt_in' : 'opt_out';
   }
 
   // submit user's updated preferences and subscriptions (if any) to Cheetah Mail
-  user_profile_cheetah_mail_subscribe($form_state, $form, $list_action, CHEETAH_MAIL_EVENT_ID_PROFILE_UPDATE);
+  user_profile_MAIL_APP_subscribe($form_state, $form, $list_action, MAIL_APP_EVENT_ID_PROFILE_UPDATE);
 
   //Set cookie with date of last profile update
   setcookie('user_profile_last_user_profile_update', time(), time() + (86400 * 3650), '/');

@@ -3,11 +3,11 @@
 <section>
   <div id="newsletter-subscribe-form-container">
     <div id="newsletter-subscribe-form-container-inner-left">
-      <h2>sally hansen</h2>
+      <h2>Digibrij</h2>
     </div>
     <div id="newsletter-subscribe-form-container-inner-right">
       <div id="newsletter-subscribe-thankyou-text">
-        <p><strong><?php print t('Have you updated your Sally Hansen profile lately?'); ?></strong></p>
+        <p><strong><?php print t('Have you updated your user profile lately?'); ?></strong></p>
         <p><?php print t('Please take a moment to update your user profile.'); ?> </p>
         <div class="button flag-wrapper">
           <?php if ($user->uid > 0) { ?>

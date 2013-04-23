@@ -18,7 +18,8 @@ function user_profile_triggers_init() {
     $newsletter_signup_flag = 0;   // default flag to zero
 
     if ($first_visit_date == 0) {
-      setcookie('first_visit_date', $current_time, $current_time + (86400 * 3650), '/'); //set the cookie to expire far in the future (10 years).
+      //set the cookie to expire far in the future (~10 years).
+      setcookie('first_visit_date', $current_time, $current_time + (86400 * 3650), '/'); 
       setcookie('last_newsletter_signup_prompt_date', $current_time, $current_time + (86400 * 3650), '/');
       $newsletter_signup_flag = 1;
     }

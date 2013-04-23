@@ -6,4 +6,4 @@ version = 6.x-1.1
 
 dependencies[] = logintoboggan
 
-package = Sally Hansen User Preference Center
+package = Custom User Preference Center

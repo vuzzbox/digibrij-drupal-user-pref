@@ -1,11 +1,11 @@
 (function ($) {
-  Drupal.SallyHansen_User_Profile = Drupal.SallyHansen_User_Profile || {};
+  Drupal.Digibrij_User_Profile = Drupal.Digibrij_User_Profile || {};
 
   $('[class$="user-profile-fieldset-display-off-legend"]').children().not("legend").hide();
   $('[class$="user-profile-fieldset-display-off"]').hide();
   $('[class$="user-profile-fieldset-display-on"]').children().show();
 
-  Drupal.SallyHansen_User_Profile.next = function(index) {
+  Drupal.Digibrij_User_Profile.next = function(index) {
 
     // hide the current fieldset
     $('#user-profile-fieldset'+index).children().not("legend").hide(300);
@@ -22,7 +22,7 @@
     return false;
   }
 
-  Drupal.SallyHansen_User_Profile.back = function(index) {
+  Drupal.Digibrij_User_Profile.back = function(index) {
 
     // hide the current fieldset
     $('#user-profile-fieldset'+index).children().not("legend").hide(300);
@@ -39,7 +39,7 @@
     return false;
   }
 
-  Drupal.SallyHansen_User_Profile.legendClick = function(index) {
+  Drupal.Digibrij_User_Profile.legendClick = function(index) {
 
     // hide the current fieldset
     $('#user-profile-fieldset'+index).children().not("legend").hide(300);

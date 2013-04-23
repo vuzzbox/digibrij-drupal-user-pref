@@ -1,9 +1,9 @@
 ; $Id$
-name = Bazarrevoice My Ratings and Review Page Module
+name = My Ratings and Review Page Module
 description = This module produces the Ratings and Review page for the preference center.
 core = 6.x
 version = 6.x-1.1
 
 dependencies[] = user_profile
 
-package = Sally Hansen User Preference Center
+package = Custom User Preference Center

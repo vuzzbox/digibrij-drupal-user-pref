@@ -1,14 +1,11 @@
 <?php
 /**
  * @file
- * User Preference Center - Bazarre Voice Ratings and Review page module
+ * User Preference Center - Ratings and Review page module
  *
  * @author  Ed McLaughlin <epmclaughlin@gmail.com>
- *          for VisonMix Digital Media, Inc.
  *
  */
-
-// include_once('../includes/user_preference_functions.php');
 
 /*
  * Implements hook_menu()

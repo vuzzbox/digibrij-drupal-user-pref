@@ -4,33 +4,33 @@ global $term_bitfield_map;
 
 $term_bitfield_map = array();
 
-// Vocab Email Preferences -> Cheetah Mail fieldname: BEAUTY_INTERESTS
-$term_bitfield_map[152] = 1;  // Beauty
-$term_bitfield_map[153] = 2;  // Hair Removal
-$term_bitfield_map[154] = 4;  // Lips
-$term_bitfield_map[155] = 8;  // Nails
-$term_bitfield_map[156] = 16; // Skin and Body
-$term_bitfield_map[157] = 32; // Tools
+// Preference Group 1 -> fieldname: GROUP 1
+$term_bitfield_map[152] = 1;  
+$term_bitfield_map[153] = 2;  
+$term_bitfield_map[154] = 4;  
+$term_bitfield_map[155] = 8;  
+$term_bitfield_map[156] = 16; 
+$term_bitfield_map[157] = 32; 
 
-// Vocab Fragrance Types -> Cheetah Mail fieldname: FRAGRANCE_TYPES
-$term_bitfield_map[172] = 1;   // Eau de Toilette
-$term_bitfield_map[173] = 2;   // Eau du Parfum
-$term_bitfield_map[174] = 4;   // Perfume
-$term_bitfield_map[171] = 8;   // Cologne
-$term_bitfield_map[170] = 16;   // After Shave
+// Preference Group 2  -> fieldname: GROUP 2
+$term_bitfield_map[172] = 1;
+$term_bitfield_map[173] = 2;
+$term_bitfield_map[174] = 4;
+$term_bitfield_map[171] = 8;
+$term_bitfield_map[170] = 16;
 
-// Vocab Fragrance Notes -> Cheetah Mail fieldname: FRAGRANCE_NOTES
-$term_bitfield_map[158] = 1;   // Aromatic
-$term_bitfield_map[159] = 2;   // Floral
-$term_bitfield_map[160] = 4;   // Fresh
-$term_bitfield_map[161] = 8;   // Oriental
-$term_bitfield_map[162] = 16;  // Woody
+// Preference Group 3 -> fieldname: GROUP 3
+$term_bitfield_map[158] = 1;   
+$term_bitfield_map[159] = 2;   
+$term_bitfield_map[160] = 4;   
+$term_bitfield_map[161] = 8;   
+$term_bitfield_map[162] = 16;  
 
-// Vocab Fragrance Persona -> Cheetah Mail fieldname: FRAGRANCE_PERSONA
-$term_bitfield_map[163] = 1;   // Athletic
-$term_bitfield_map[164] = 2;   // Dynamic
-$term_bitfield_map[165] = 4;   // Earthy
-$term_bitfield_map[166] = 8;   // Individualistic
-$term_bitfield_map[167] = 16;  // Romantic
-$term_bitfield_map[168] = 32;  // Sporty
-$term_bitfield_map[169] = 64;  // Traditional
+// Preference Group 4 -> fieldname: GROUP 4
+$term_bitfield_map[163] = 1;   
+$term_bitfield_map[164] = 2;   
+$term_bitfield_map[165] = 4;   
+$term_bitfield_map[166] = 8;   
+$term_bitfield_map[167] = 16;  
+$term_bitfield_map[168] = 32;  
+$term_bitfield_map[169] = 64;  
